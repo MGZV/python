@@ -3,19 +3,38 @@
 HELP = """
 * help - напечатать справку по программе.
 * add - добавить задачу в список (название задачизапрашиваему пользователя).
-* show - напечатать все добавленные задачи.
+* show - напечатать все добавленные задачи во все дни (сегодня, завтра, другое).
+* q - выход ихз программы.
 """
-tasks = []
+today = []
+tomorrow = []
+other = []
 
 while True:
     command = input("\nВведите команду: ")
+
     if command == "help":
         print(HELP)
     elif command == "add":
         task = input("Введите задачу: ")
-        tasks.append(task)
-        print("Задача добавлена")
+        day = input("Выберите когда.\n"
+                     "- сегодня\n- завтра\n- другое \nВведите один из трех вариантов: ")
+        if day == "сегодня":
+            today.append(task)
+            print("Задача добавлена")
+        elif day == "завтра":
+            tomorrow.append(task)
+            print("Задача добавлена")
+        elif day == "другое":
+            other.append(task)
+            print("Задача добавлена")
+        else:
+            print("Неизвестная команда! Ваша задача не добавлена, повторите снова")
+
     elif command == "show":
-        print(tasks)
+        print(today, tomorrow, other)
+    elif command == "q":
+        print("Спасибо за использование! До свидания!")
+        break
     else:
         print("Неизвестная команда!")
